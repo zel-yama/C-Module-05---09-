@@ -71,3 +71,11 @@ std::ostream &operator<<(std::ostream &out,const Bureaucrat &obj)
     out << obj.getter_name() << ", bureaucrat grade " << obj.getter_grade();
     return (out);
 }
+void Bureaucrat::singForm( Form &obj)
+{
+    obj.beSigned(*this);
+    if (obj.getter_sing() == false)
+        std::cout << this->_name<<  "couldn’t sign" <<  obj.getter_name() << "because" << this->_Grade << "small than " << obj.getter_GradeS() << std::endl;
+    else    
+        std::cout << this->_name << "signed" << std::endl;  
+}

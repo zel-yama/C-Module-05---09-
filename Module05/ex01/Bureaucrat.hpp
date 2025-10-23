@@ -3,6 +3,7 @@
 #define BUREAUCRAT_HHP
 
 #include <iostream>
+#include "Form.hpp"
 class Bureaucrat
 {
     private:
@@ -18,6 +19,7 @@ class Bureaucrat
         int getter_grade() const;
         void decrement_grade( int val);
         void increment_grade(unsigned int val);
+        void singForm( Form &obj);
         class GradeTooHighException: std::exception
         {
             public:
