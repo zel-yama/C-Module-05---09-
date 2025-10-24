@@ -52,7 +52,7 @@ void Form::beSigned(Bureaucrat &obj){
     if (obj.getter_grade() <= this->_Grade_sing)
         this->_is_sing = true;
     else
-        `throw GradeTooLowException();
+        throw GradeTooLowException();
 }
 Form::Form(const Form &obj):_is_sing(false), _Grade_exc(1), _Grade_sing(1) {
     *this = obj;
