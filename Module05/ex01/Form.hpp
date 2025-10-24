@@ -9,7 +9,7 @@ class Form{
         const std::string _name;
         bool _is_sing;
         const int _Grade_exc;
-        const int _Grade_sing;
+        const int _Gradt
     public:
         Form();
         ~Form();
@@ -37,6 +37,6 @@ class Form{
 
 
 };
-
+std::ostream &operator<<(const std::ostream &out,const Bureaucrat& obj );
 
 #endif
