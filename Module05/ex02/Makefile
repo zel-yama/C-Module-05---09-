@@ -1,10 +1,10 @@
 NAME = program
 COM = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-FILES = Bureaucrat.cpp main.cpp
+FILES = Bureaucrat.cpp main.cpp Form.cpp
 OBJ = $(FILES:.cpp=.o)
 RM = rm -rf
-HEADER = Bureaucrat.hpp
+HEADER = Bureaucrat.hpp Form.hpp
 
 all: $(NAME)
 %.o: %cpp $(HEADER)
@@ -16,5 +16,5 @@ clean:
 	$(RM) $(OBJ)
 fclean: clean
 	$(RM) $(NAME)
+
 re: fclean all 
-	
