@@ -25,11 +25,19 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
     return (*this);
 
 }
+void RobotomyRequestForm::action_RobotomyRequestForm(const Bureaucrat &obj) const{
+    std::cout << "drilling noise" << std::endl;
+    std::cout << "drilling noise" << std::endl;
+    int ran = rand();
+    if (ran % 2 == 0)
+        std::cout << _target << "has been robotomized successfull" << std::endl;
+    else
+        std::cout << "that the robotomy failed"<< std::endl;
+}
 
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const{
 
-    if (executor.getter_grade() <= this->getter_GradeE() && this->getter_sing() == true)
-        //action
-    else   
-        throw AForm::GradeTooLowException();
+    BeExecute(executor);
+    action_RobotomyRequestForm(executor);
+
 }

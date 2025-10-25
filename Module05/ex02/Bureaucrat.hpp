@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "AForm.hpp"
-class Form;
+class AForm;
 class Bureaucrat
 {
     private:
@@ -21,6 +21,7 @@ class Bureaucrat
         void decrement_grade( int val);
         void increment_grade(unsigned int val);
         void signForm( AForm &obj);
+        void executeForm(AForm const & form) const ;
         class GradeTooHighException: std::exception
         {
             public:
@@ -31,7 +32,6 @@ class Bureaucrat
             public:
                 virtual const char *what() const throw();
         };
-        void executeForm(AForm const & form);
 
     };
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &obj);

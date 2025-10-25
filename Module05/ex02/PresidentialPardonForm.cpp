@@ -3,31 +3,32 @@
 
 #include "PresidentialPardonForm.hpp"
 
-PresindetialPardonForm::PresindetialPardonForm():AForm("PresindetialPardonForm",5, 25 )
+PresidentialPardonForm::PresidentialPardonForm():AForm("PresindetialPardonForm",5, 25 )
 {
 
 }
-PresindetialPardonForm::PresindetialPardonForm(const std::string &target):AForm("PresindetialPardonForm",5, 25 )
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target):AForm("PresindentialPardonForm",5, 25 )
 {
     this->_target = target;
 }
-PresindetialPardonForm::~PresindetialPardonForm(){
+PresidentialPardonForm::~PresidentialPardonForm(){
 
 }
 
-PresindetialPardonForm::PresindetialPardonForm(const PresindetialPardonForm &obj):AForm(obj){
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj):AForm(obj){
 
 }
-void PresindetialPardonForm::execute(const Bureaucrat &executor)const{
-    
-    if (executor.getter_grade() <= this->getter_GradeE() && this->getter_sing() == true)
-        //action
-    else   
-        throw AForm::GradeTooLowException();
-    
+void PresidentialPardonForm::action_PresidentialPardonForm(const Bureaucrat &obj) const{
+
+    std::cout << _target << "has been pardoned by Zaphod Beeblebrox" << std::endl;
+}
+void PresidentialPardonForm::execute(const Bureaucrat &executor)const{
+
+    BeExecute(executor);
+    action_PresidentialPardonForm(executor);
 }
 
-PresindetialPardonForm &PresindetialPardonForm::operator=(const PresindetialPardonForm &obj){
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &obj){
 
     if (this != &obj)
     {

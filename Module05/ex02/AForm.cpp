@@ -46,10 +46,12 @@ AForm::AForm(const std::string &name, int Grade_exc, int Grade_sing):_Grade_exc(
         
     
 }
-void AForm::BeExecute(const Bureaucrat &obj) {
+void AForm::BeExecute(const Bureaucrat &obj)const {
 
+    if (this->_is_sing == true)
+        throw FormSigned();
     if (obj.getter_grade() <= this->_Grade_exc)
-        this->_is_sing = true;
+        return ;
     else
         throw GradeTooLowException();
 }
@@ -76,4 +78,9 @@ const char *AForm::GradeTooLowException::what() const throw(){
     return(" the grade is too low ");
 }
 
-
+const char *AForm::FileOpenFailed::what() const throw(){
+    return ("the file failed to open");
+}
+const char *AForm::FormSigned::what() const throw(){
+    return("the form is already signed ");       
+}

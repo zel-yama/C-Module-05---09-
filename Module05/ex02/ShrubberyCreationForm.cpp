@@ -22,12 +22,21 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 void ShrubberyCreationForm::action_ShrubberyCreationForm(const Bureaucrat &obj) const
 {
+    std::string filename = this->_target+"__shrubbery";
+    std::ofstream file_out(filename.c_str());
+    if(!file_out.is_open())
+        throw AForm::FileOpenFailed();
 
+	file_out << "      *           *           *           *" << std::endl;
+	file_out << "     ***         ***         ***         ***" << std::endl;
+	file_out << "    *****       *****       *****       *****" << std::endl;
+	file_out << "   *******     *******     *******     *******" << std::endl;
+	file_out << "  *********   *********   *********   *********" << std::endl;
+	file_out << " *********** *********** *********** ***********" << std::endl;
+	file_out << "    |            |            |            |" << std::endl;
 }
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
 
-    if (executor.getter_grade() <= this->getter_GradeE() && this->getter_sing() == true)
-        action_ShrubberyCreationForm(executor);
-    else   
-        throw AForm::GradeTooLowException();
+    BeExecute(executor);
+    action_ShrubberyCreationForm(executor);
 }

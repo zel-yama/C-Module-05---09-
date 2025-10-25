@@ -24,7 +24,7 @@ class AForm{
         bool getter_sing() const;
         int getter_GradeE() const;
         int getter_GradeS() const;
-        void BeExecute(const Bureaucrat &obj);
+        void BeExecute(const Bureaucrat &obj) const;
         class GradeTooLowException :public std::exception
         {
             public:
@@ -37,6 +37,16 @@ class AForm{
                 const char *what() const throw();
 
         };
+        class FileOpenFailed: public std::exception
+        {
+            public:
+                const char *what() const throw();
+        };
+        class FormSigned : public std::exception{
+            public:
+                const char *what() const throw();
+        };
+
 };
 std::ostream &operator<<(std::ostream &out,const AForm& obj );
 
