@@ -13,7 +13,7 @@ class AForm{
         const int _Grade_sing;
     public:
         AForm();
-        ~AForm();
+        virtual ~AForm();
         AForm &operator=(const AForm &obj);
         AForm(const AForm &obj);
         AForm(const std::string &name, int Grade_exc, int Grade_sing);
