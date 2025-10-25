@@ -1,6 +1,6 @@
 
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
 
 
@@ -46,6 +46,13 @@ AForm::AForm(const std::string &name, int Grade_exc, int Grade_sing):_Grade_exc(
         
     
 }
+void AForm::BeExecute(const Bureaucrat &obj) {
+
+    if (obj.getter_grade() <= this->_Grade_exc)
+        this->_is_sing = true;
+    else
+        throw GradeTooLowException();
+}
 void AForm::beSigned(Bureaucrat &obj){
 
 
@@ -68,4 +75,5 @@ const char *AForm::GradeTooHighException::what() const throw(){
 const char *AForm::GradeTooLowException::what() const throw(){
     return(" the grade is too low ");
 }
+
 

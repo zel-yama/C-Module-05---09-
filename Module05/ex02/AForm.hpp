@@ -24,6 +24,7 @@ class AForm{
         bool getter_sing() const;
         int getter_GradeE() const;
         int getter_GradeS() const;
+        void BeExecute(const Bureaucrat &obj);
         class GradeTooLowException :public std::exception
         {
             public:

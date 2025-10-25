@@ -20,7 +20,7 @@ class Bureaucrat
         int getter_grade() const;
         void decrement_grade( int val);
         void increment_grade(unsigned int val);
-        void signForm( Form &obj);
+        void signForm( AForm &obj);
         class GradeTooHighException: std::exception
         {
             public:
