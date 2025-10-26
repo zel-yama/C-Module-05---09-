@@ -20,6 +20,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj
 }
 void PresidentialPardonForm::action_PresidentialPardonForm(const Bureaucrat &obj) const{
 
+    (void)obj;
     std::cout << _target << "has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 void PresidentialPardonForm::execute(const Bureaucrat &executor)const{

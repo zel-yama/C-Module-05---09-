@@ -27,12 +27,12 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 }
 void RobotomyRequestForm::action_RobotomyRequestForm(const Bureaucrat &obj) const{
     std::cout << "drilling noise" << std::endl;
-    std::cout << "drilling noise" << std::endl;
-    int ran = rand();
+    (void)obj;
+    int ran = rand() %100;
     if (ran % 2 == 0)
         std::cout << _target << "has been robotomized successfull" << std::endl;
     else
-        std::cout << "that the robotomy failed"<< std::endl;
+        std::cout << " that the robotomy failed"<< std::endl;
 }
 
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const{

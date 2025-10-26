@@ -7,7 +7,7 @@ RM = rm -rf
 HEADER = Bureaucrat.hpp AForm.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
 
 all: $(NAME)
-%.o: %cpp $(HEADER)
+%.o: %.cpp $(HEADER)
 	$(COM) $(FLAGS) -c $< -o $@
 $(NAME): $(OBJ)
 	$(COM) $(FLAGS) $(OBJ) -o $(NAME)

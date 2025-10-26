@@ -22,10 +22,14 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 }
 void ShrubberyCreationForm::action_ShrubberyCreationForm(const Bureaucrat &obj) const
 {
+    (void)obj;
     std::string filename = this->_target+"__shrubbery";
+   
     std::ofstream file_out(filename.c_str());
-    if(!file_out.is_open())
+    if(!file_out.is_open()){
         throw AForm::FileOpenFailed();
+    }
+        
 
 	file_out << "      *           *           *           *" << std::endl;
 	file_out << "     ***         ***         ***         ***" << std::endl;
@@ -36,6 +40,7 @@ void ShrubberyCreationForm::action_ShrubberyCreationForm(const Bureaucrat &obj) 
 	file_out << "    |            |            |            |" << std::endl;
 }
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const{
+    
 
     BeExecute(executor);
     action_ShrubberyCreationForm(executor);

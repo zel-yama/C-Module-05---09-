@@ -3,6 +3,9 @@
 #include "AForm.hpp"
 #include <iostream>
 #include "Bureaucrat.hpp"
+
+#include <stdlib.h>
+
 class RobotomyRequestForm: public AForm{
 
     private:
