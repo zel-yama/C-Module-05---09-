@@ -15,7 +15,10 @@ class Intern{
         ~Intern();
         Intern(const Intern &obj);
         Intern &operator=(const Intern  &obj);
+        AForm *create_robtomy(std::string target);
+        AForm *create_shrubbery(std::string target);
+        AForm *create_presidential(std::string target);
 
 };
 
-#endif;
+#endif

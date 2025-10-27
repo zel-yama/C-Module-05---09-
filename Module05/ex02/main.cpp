@@ -21,6 +21,7 @@ int main() {
     bureaucrat1.executeForm(form_robotomy);
     bureaucrat.executeForm(form_presidential);
     bureaucrat2.executeForm(form_robotomy);
+    bureaucrat.executeForm(form_shrubbery);
     
 
 
