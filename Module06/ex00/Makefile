@@ -1,10 +1,10 @@
 NAME = program
 COM = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
-FILES = Bureaucrat.cpp main.cpp
+FILES = main.cpp ScalarConverter.cpp
 OBJ = $(FILES:.cpp=.o)
 RM = rm -rf
-HEADER = Bureaucrat.hpp
+HEADER = ScalarConverter.hpp
 
 all: $(NAME)
 %.o: %.cpp $(HEADER)
