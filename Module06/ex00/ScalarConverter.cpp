@@ -32,7 +32,7 @@ void ScalarConverter::handle_char(char c){
 
     print_char(c);
     std::cout << "int    : " << static_cast<int>(c) << std::endl;
-    std::cout << "float  : " << static_cast<float>(c) << std::endl;
+    std::cout << "float  : " << static_cast<float>(c) << "f" << std::endl;
     std::cout << "double : " << static_cast<double>(c) << std::endl;
 }
 void ScalarConverter::handle_int(int num){

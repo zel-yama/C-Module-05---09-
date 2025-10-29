@@ -2,6 +2,8 @@
 #define SERIALIZER_HPP
 #include "Data.h"
 #include <iostream>
+
+typedef unsigned long uintptr_t;
 class Serializer{
 
     public:
