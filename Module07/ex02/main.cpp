@@ -4,5 +4,5 @@
 int main(){
 
     Array<int> array(4);
-    for ()
+
 }

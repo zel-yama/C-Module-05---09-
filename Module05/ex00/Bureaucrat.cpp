@@ -34,7 +34,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &obj)
     if (this != &obj)
     {
         this->_Grade = obj._Grade;
- 
     }   
     return (*this);
 }
@@ -50,7 +49,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &obj){
     *this = obj;
 }
 void Bureaucrat::increment_grade(unsigned int val){
-         if ( val  >= 150 )
+         if ( val  >= 150 ) 
             throw Bureaucrat::GradeTooHighException();
         if ( (val + _Grade) > 150 )
             throw Bureaucrat::GradeTooHighException();
