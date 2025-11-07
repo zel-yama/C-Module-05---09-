@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <stack>
-#include <array>
+
 template <typename T> 
 class MutantStack : public std::stack<T>
 {
@@ -17,7 +17,14 @@ class MutantStack : public std::stack<T>
         iterator  end(){
             return this->c.end();
         }
-
+    MutantStack(){};
+    ~MutantStack(){};
+    MutantStack &operator=(const MutantStack &obj){
+        (void)obj;
+    };
+    MutantStack(const MutantStack &obj){
+        (void)obj;
+    };
 };
 
 
