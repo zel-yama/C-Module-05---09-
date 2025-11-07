@@ -4,12 +4,12 @@
 
 const char *Bureaucrat::GradeTooHighException::what()const throw()
 {
-    return " the Grade is too high ";
+    return "the Grade is too high";
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return " the Grade is too low ";
+    return "the Grade is too low";
 }
 
 Bureaucrat::Bureaucrat()
@@ -48,54 +48,20 @@ int Bureaucrat::getter_grade() const{
 Bureaucrat::Bureaucrat(const Bureaucrat &obj){
     *this = obj;
 }
-void Bureaucrat::increment_grade(unsigned int val){
-         if ( val  >= 150 )
-            throw Bureaucrat::GradeTooHighException();
-        if ( (val + _Grade) > 150 )
-            throw Bureaucrat::GradeTooHighException();
-        this->_Grade += val;
+void Bureaucrat::increment_grade(){
+    if (_Grade - 1 < 1)
+        throw Bureaucrat::GradeTooHighException();
+    this->_Grade--;
 }
 
-void Bureaucrat::decrement_grade(int val){
-    if (val < -150)
+void Bureaucrat::decrement_grade(){
+   
+    if ((_Grade + 1) > 150)
         throw Bureaucrat::GradeTooLowException();
-    if (val > 150)
-        throw Bureaucrat::GradeTooLowException();
-    if ((_Grade - val) <= 0)
-        throw Bureaucrat::GradeTooLowException();
-    this->_Grade -= val;
+    this->_Grade++;
 }
 std::ostream &operator<<(std::ostream &out,const Bureaucrat &obj)
 {
     out << obj.getter_name() << ", bureaucrat grade " << obj.getter_grade();
     return (out);
-}
-void Bureaucrat::signForm( AForm &obj)
-{
-    try
-    {
-        obj.beSigned(*this);
-    }
-    catch (const std::exception &e) 
-    {
-        std::cout << _name << " couldn't sign " << obj.getter_name() << " because ";
-        std::cout << e.what() << std::endl;
-        return ;
-    }
-    std::cout << _name << " signed " << obj.getter_name() << std::endl;
-    
-}
-void Bureaucrat::executeForm(AForm const &form) const {
- try
-    {
-        form.execute(*this);
-    }
-    catch (const std::exception &e) 
-    {
-        std::cout << _name << " couldn't execute  " << form.getter_name() << " because ";
-        std::cout << e.what() << std::endl;
-        return ;
-    }
-    std::cout << _name << " executed  " << form.getter_name() << std::endl;
-
 }

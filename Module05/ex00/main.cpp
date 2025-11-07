@@ -16,10 +16,10 @@ int main()
     try
     {
         Bureaucrat obj(10, "jon");
-        obj.decrement_grade(1);
-        obj.decrement_grade(4);
+        obj.decrement_grade();
+        obj.decrement_grade();
         std::cout << obj << std::endl;
-        obj.decrement_grade(871);
+        obj.decrement_grade();
     }
     catch (const Bureaucrat::GradeTooLowException &e)
     {
@@ -29,9 +29,9 @@ int main()
     try
     {
         Bureaucrat obj;
-        obj.increment_grade(3);
-        obj.increment_grade(4);
-        obj.increment_grade(55);
+        obj.increment_grade();
+        obj.increment_grade();
+        obj.increment_grade();
         
     }
     catch(const Bureaucrat::GradeTooLowException& e)

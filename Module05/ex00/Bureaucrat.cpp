@@ -48,22 +48,17 @@ int Bureaucrat::getter_grade() const{
 Bureaucrat::Bureaucrat(const Bureaucrat &obj){
     *this = obj;
 }
-void Bureaucrat::increment_grade(unsigned int val){
-         if ( val  >= 150 ) 
-            throw Bureaucrat::GradeTooHighException();
-        if ( (val + _Grade) > 150 )
-            throw Bureaucrat::GradeTooHighException();
-        this->_Grade += val;
+void Bureaucrat::increment_grade(){
+    if (_Grade - 1 < 1)
+        throw Bureaucrat::GradeTooHighException();
+    this->_Grade--;
 }
 
-void Bureaucrat::decrement_grade(int val){
-    if (val < -150)
+void Bureaucrat::decrement_grade(){
+   
+    if ((_Grade + 1) > 150)
         throw Bureaucrat::GradeTooLowException();
-    if (val > 150)
-        throw Bureaucrat::GradeTooLowException();
-    if ((_Grade - val) <= 0)
-        throw Bureaucrat::GradeTooLowException();
-    this->_Grade -= val;
+    this->_Grade++;
 }
 std::ostream &operator<<(std::ostream &out,const Bureaucrat &obj)
 {
