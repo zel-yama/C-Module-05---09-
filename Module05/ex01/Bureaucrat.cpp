@@ -21,9 +21,9 @@ Bureaucrat::Bureaucrat(int val, std::string name) :_name(name)
 {
     
     if (val < 1)
-        throw Bureaucrat::GradeTooLowException();
-    if (val > 150)
         throw Bureaucrat::GradeTooHighException();
+    if (val > 150)
+        throw Bureaucrat::GradeTooLowException();
     this->_Grade = val;    
 }
 
@@ -34,6 +34,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &obj)
     if (this != &obj)
     {
         this->_Grade = obj._Grade;
+        
     }   
     return (*this);
 }
@@ -64,4 +65,24 @@ std::ostream &operator<<(std::ostream &out,const Bureaucrat &obj)
 {
     out << obj.getter_name() << ", bureaucrat grade " << obj.getter_grade();
     return (out);
+}
+
+
+void Bureaucrat::signForm( Form &obj)
+{
+    try
+    {
+       obj.beSigned(*this);
+
+    }
+    catch (const std::exception &e) 
+    {
+
+       std::cout << obj.getter_name() << " couldn’t sign " << _name << " because ";
+        std::cout << e.what() << std::endl;
+        return ;
+
+    }
+    std::cout << obj.getter_name() << " signed " << _name << std::endl;
+
 }

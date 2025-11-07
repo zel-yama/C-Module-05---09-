@@ -21,7 +21,7 @@ int main()
         std::cout << obj << std::endl;
         obj.decrement_grade();
     }
-    catch (const Bureaucrat::GradeTooLowException &e)
+    catch (std::exception &e)
     {
         std::cout << e.what() << std::endl;
 
