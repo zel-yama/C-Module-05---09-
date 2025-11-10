@@ -7,7 +7,7 @@ RM = rm -rf
 HEADER = Bureaucrat.hpp Form.hpp
 
 all: $(NAME)
-%.o: %cpp $(HEADER)
+%.o: %.cpp $(HEADER)
 	$(COM) $(FLAGS) -c $< -o $@
 $(NAME): $(OBJ)
 	$(COM) $(FLAGS) $(OBJ) -o $(NAME)

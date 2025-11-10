@@ -8,7 +8,7 @@ int main()
     {
         Bureaucrat obj(182, "ahmd");
     }   
-    catch (const Bureaucrat::GradeTooHighException &e)
+    catch (std::exception &e)
     {
         std::cout << e.what() << std::endl;
 
@@ -34,7 +34,7 @@ int main()
         obj.increment_grade();
         
     }
-    catch(const Bureaucrat::GradeTooLowException& e)
+    catch(std::exception& e)
     {
         std::cout << e.what() << std::endl;
     }

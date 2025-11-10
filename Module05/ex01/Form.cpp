@@ -38,13 +38,12 @@ Form &Form::operator=(const Form &obj){
     }
     return (*this);
 }
-Form::Form(const std::string &name, int Grade_exc, int Grade_sing):_Grade_exc(Grade_exc), _Grade_sing(Grade_sing), _name(name){
+Form::Form(const std::string &name, int Grade_exc, int Grade_sing): _name(name), _is_sing(false), _Grade_exc(Grade_exc), _Grade_sing(Grade_sing){
+    
     if (Grade_exc > 150 || Grade_sing > 150)
         throw Form::GradeTooLowException();
     if (Grade_exc < 1 || Grade_sing < 1)
         throw Form::GradeTooHighException();
-        
-    
 }
 void Form::beSigned(Bureaucrat &obj){
 
@@ -54,7 +53,7 @@ void Form::beSigned(Bureaucrat &obj){
     else
         throw GradeTooHighException();
 }
-Form::Form(const Form &obj):_is_sing(false), _Grade_exc(1), _Grade_sing(1) {
+Form::Form(const Form &obj): _is_sing(false), _Grade_exc(1), _Grade_sing(1) {
     *this = obj;
 }
 

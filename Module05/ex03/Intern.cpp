@@ -32,7 +32,7 @@ AForm *Intern::makeForm(const std::string &type, const std::string &target){
 
     std::string array[3]= {"shrubbery creation", "robotomy request", "presidential pardon" };
     AForm *(Intern::*functions[])(std::string) = {&Intern::create_shrubbery, &Intern::create_robtomy, &Intern::create_presidential};
-    int i =0 ;
+    int i = 0 ;
     while (array[i].compare(type) != 0 && i < 3) 
         i++;
     if (3 == i)
