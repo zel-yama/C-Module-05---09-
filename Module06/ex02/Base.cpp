@@ -9,15 +9,17 @@ Base::~Base(){
 }
 
 Base * generate(void){
-    int val = rand() % 1000;
-    if (val % 3 == 0)
+    std::srand(time(NULL));
+    int val = rand() % 3;
+    if (val == 0)
+        return (new A());
+    else if (val == 1)
         return (new B());
-    else if (val % 3 == 1)
+    else if (val == 2)
         return (new C());
-
-    return (new A());
-    
+    return NULL;
 }
+
 void identify(Base* p){
     if (dynamic_cast<C*>(p))
         std::cout << "type input is C obj  pointed by" << std::endl;
@@ -29,8 +31,6 @@ void identify(Base* p){
 
 
 void identify(Base& p){
-
-
     try{
 
         (void)dynamic_cast<A&>(p);

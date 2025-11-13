@@ -10,7 +10,7 @@ class ScalarConverter{
 
     public:
         static void convert(std::string literal);
-        class ExceptionError : std::exception{
+        class ExceptionError : public std::exception{
             public:
                 const char *what() const throw();
         };
@@ -24,7 +24,7 @@ class ScalarConverter{
         static double IntToDouble(int val);
         static void handle_float(std::string str);
         static void handle_char(char c);
-        static void handle_int(int num);
+        static void handle_int(std::string str);
         static void print_char(int c);
         static void handle_inff(std::string str);
         static void handle_inf(std::string str);

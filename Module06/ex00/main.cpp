@@ -14,4 +14,6 @@ int main(int av, char *ac[]){
             std::cout << e.what() << std::endl;
         }
         }
+    else
+        std::cout << "invalid arguments " << std::endl;
 }

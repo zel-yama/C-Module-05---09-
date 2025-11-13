@@ -5,6 +5,7 @@
 class BitcoinExchange{
     private:
         std::map<long, int> map;
+        std::map<long, int> store;
     
         
 };
