@@ -11,5 +11,8 @@ class Serializer{
         static Data* deserialize(uintptr_t raw);
     private:
         Serializer();
+        Serializer(const Serializer & obj);
+        ~Serializer();
+        Serializer & operator=(const Serializer &obj);
  };
 #endif
