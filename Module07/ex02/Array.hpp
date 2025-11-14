@@ -15,7 +15,7 @@ template <typename T> class Array{
         Array(size_t len):_len(len){
             ptr = new T[_len];
         }
-        T &operator=(const T &obj){
+        T &operator=(const Array &obj){
             if (this != &obj){
                 this->_len = obj._len;
 
@@ -30,12 +30,17 @@ template <typename T> class Array{
         size_t size()const {
             return _len;
         }
-        Array(const T &obj){
+        Array(const Array &obj){
             _len = obj._len;
             ptr = new T[_len];
             for (size_t i = 0; i < _len; i++){
                 ptr[i] = obj.ptr[i];
             }
+        }
+        void setterIndex(unsigned int index, int value){
+            if (index >= _len)
+                throw  std::invalid_argument("the index out of range ");
+            ptr[index] = value;
         }
         T &operator[](unsigned int index){
             if (index >= _len)
