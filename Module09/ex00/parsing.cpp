@@ -17,21 +17,46 @@ void parsdateingFirstLine(std::string &str){
     
     }
 }
-void charValidtionDate(std::string&  date){
+void convertValue(std::string &date, BitcoinExchange &obj){
+    char dash, dash1;
+
+    std::stringstream ss(date);
+    ss >> obj.year >> dash >> obj.month >> dash1 >> obj.day;
+    if ((date.size() > 10 || date.size() < 5) || obj.year == 0 )
+        throw std::runtime_error("invalid value => " + date);
+    
+    
+
+
+}
+void charValidtionDate(std::string&  date, BitcoinExchange &obj){
 
     size_t i = 0;
     size_t size = date.size();
     while(i > size){
         if (!std::isalpha((unsigned int) date[i]) && date[i] != '-' )
-            throw std::runtime_error("Error : invalid char in this date" + date);
+            throw std::runtime_error("Error : invalid char in this date => " + date);
         i++;
     }
+    if (date[0] == '-' || date[size -1] == '-')
+        throw std::runtime_error("Error: invalid date => "+ date);
+    
 }
-double parsingValue(){
-
+double parsingValue(std::string &value){
+    size_t i = 0;
+    size_t size = value.size();
+    while(i < size){
+        if (!std::isalpha((unsigned int) value[i]) && value[i] != '.' )
+            throw std::runtime_error("Error value is not valid => " + value);
+        i++;
+    }
+    std::stringstream ss(value);
+    double val = 0;
+    ss >> val;
+    return val;
 }
 void parsingStart(std::string &line, BitcoinExchange &obj){
-   
+   int daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31}; 
     
     size_t pos = line.find(",");
     if (pos == std::string::npos)
@@ -41,7 +66,7 @@ void parsingStart(std::string &line, BitcoinExchange &obj){
     line = removeSpaces(line);
     value = removeSpaces(value);
 
-    charValidtionDate(line);
+    charValidtionDate(line, obj);
 
 
 
@@ -50,8 +75,8 @@ void parsing(char *file, BitcoinExchange &obj){
 
     std::ifstream input(file);
     std::string str;
-    int daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31}; 
-     
+    
+
     if (!input.is_open())
         throw std::runtime_error("Error in file can't be open ");
     
