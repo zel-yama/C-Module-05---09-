@@ -1,7 +1,7 @@
 NAME = btc
 COM = c++
 FLAGS = -Wall -Werror -Wextra 
-FILES =  BitcoinExchange.cpp main.cpp
+FILES =  BitcoinExchange.cpp main.cpp parsing.cpp
 OBJ = $(FILES:.cpp=.o)
 HEADER = BitcoinExchange.hpp
 RM = rm -rf 

@@ -7,6 +7,9 @@ int main(int av, char *ac[])
     return (1);
     try{
         BitcoinExchange obj;
+        
+        parsing(ac[1], obj);
+
 
     } 
     catch (std::exception &e){

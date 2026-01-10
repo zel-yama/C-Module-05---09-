@@ -8,7 +8,7 @@ int convertString(std::string &str){
     float value;
     ss >> value;
     ss >> s;
-    printf("value %.2f\n ", value);
+    
     if (!s.empty() && !ss.eof())
         return -1;
     else 
@@ -47,13 +47,15 @@ BitcoinExchange::BitcoinExchange(){
             str = str.substr(pos);
             value = convertString(str);
             store[key] = value;
-           /// printf("this value %.2f and this var %s\n", value, key.c_str());            
+                  
 
             
         }
     
         
     }
+
+    
 
     
     

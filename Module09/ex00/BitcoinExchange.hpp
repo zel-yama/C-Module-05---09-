@@ -7,19 +7,19 @@
 #include <exception>
 #include <sstream>
 #include <cctype>
+typedef std::map<std::string , float> maptype;
 class BitcoinExchange{
     public:
-        size_t year;
-        size_t day;
-        
-        size_t month;
+        std::string date;
+        int  value;
         bool flag;
         BitcoinExchange();
+        maptype store;
     private:
-        std::map<std::string , float> store;
     
         
 };
 std::string removeSpaces(std::string &str);
-
+int convertString(std::string &str);
+void parsing(char *file, BitcoinExchange &obj);
  #endif
