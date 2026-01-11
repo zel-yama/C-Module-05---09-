@@ -2,13 +2,15 @@
 
 #include "BitcoinExchange.hpp"
 
-int convertString(std::string &str){
+double convertString(std::string &str){
+    
+
     std::stringstream ss(str);
     std::string s;
-    float value;
+    double value;
     ss >> value;
     ss >> s;
-    
+
     if (!s.empty() && !ss.eof())
         return -1;
     else 
@@ -34,7 +36,7 @@ BitcoinExchange::BitcoinExchange(){
     std::string str;
     std::string key;
     float value;
-   
+    this->value = 0.00;
     while(getline(data, str)){
      
         if (!str.compare("date,exchange_rate")){
@@ -47,6 +49,7 @@ BitcoinExchange::BitcoinExchange(){
             str = str.substr(pos);
             value = convertString(str);
             store[key] = value;
+         
                   
 
             
@@ -55,7 +58,6 @@ BitcoinExchange::BitcoinExchange(){
         
     }
 
-    
 
     
     

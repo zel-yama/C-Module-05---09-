@@ -11,7 +11,7 @@ typedef std::map<std::string , float> maptype;
 class BitcoinExchange{
     public:
         std::string date;
-        int  value;
+        double value;
         bool flag;
         BitcoinExchange();
         maptype store;
@@ -20,6 +20,6 @@ class BitcoinExchange{
         
 };
 std::string removeSpaces(std::string &str);
-int convertString(std::string &str);
+double convertString(std::string &str);
 void parsing(char *file, BitcoinExchange &obj);
  #endif

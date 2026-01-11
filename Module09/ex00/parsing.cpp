@@ -21,17 +21,25 @@ void parsdateingFirstLine(std::string &str){
 void convertValue(std::string &date){
     char dash, dash1;
     int day,year, month;
-    //int daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31}; 
+    int daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31}; 
     std::stringstream ss(date);
     ss >> year >> dash >> month >> dash1 >> day;
-    if ((day == 0 || month == 0) ||  year == 0 )
-        throw std::runtime_error("invalid value => " + date);
+    if (year % 400 == 0 || year % 4 == 0)
+        daysInMonth[1] = 29;
+    if ((day <= 0 || month <= 0) ||  year <= 0 )
+        throw std::runtime_error("Error : invalid date => " + date);
+    if (month > 12)
+        throw std::runtime_error("Error : invalid month => "+ date);
+    if (daysInMonth[month -1] < day)
+        throw std::runtime_error("Error : day is too large => "+ date);
 }
 
 void charValidtionDate(std::string&  date){
 
     size_t i = 0;
     size_t size = date.size();
+    if (size != 10)
+        throw std::runtime_error("Error: format of date is not correct => " + date);
     while(i > size){
         if (!std::isalpha((unsigned int) date[i]) && date[i] != '-' )
             throw std::runtime_error("Error : invalid char in this date => " + date);
@@ -56,30 +64,36 @@ void parsingStart(std::string &line, BitcoinExchange &obj){
     
     size_t pos = line.find("|");
     if (pos == std::string::npos)
-        throw std::runtime_error("Error invalid line needed ',' => "+ line);
+        throw std::runtime_error("Error invalid line needed '|' => "+ line);
     std::string value = line.substr(pos +1);
     line = line.substr(0, pos);
     line = removeSpaces(line);
     value = removeSpaces(value);
     obj.date = line;
     obj.value = convertString(value);
+    if (obj.value < 0 )
+        throw std::runtime_error("Error: not a positive number.");
+    if (obj.value > 1000)
+        throw std::runtime_error("Error: too large a number. ");
     parsingValue(value);
     charValidtionDate(line);
     if (obj.store.begin()->first > line)
-        throw std::runtime_error("bad input => " + line);
+        throw std::runtime_error("Error : lower date for my data range => " + line);
 
 }
-void print(std::string &date, int price, int result){
+void print(std::string &date, double price, double result){
     std::cout << date << " => " << price << " = " << result << std::endl;
 }
 
 void findValue(BitcoinExchange &obj){
+
 
     if(obj.store.find(obj.date) != obj.store.end())
     {
         print(obj.date, obj.value, obj.value * obj.store[obj.date] );
     }
     else{
+
 
         maptype::iterator its = obj.store.end();
         its--;
@@ -88,7 +102,6 @@ void findValue(BitcoinExchange &obj){
         else{
             maptype::iterator it = obj.store.lower_bound(obj.date);
             it--;
-            printf("%d -- %f\n", obj.value, it->second);
             print(obj.date, obj.value, obj.value * it->second);
         }
     }
@@ -114,6 +127,7 @@ void parsing(char *file, BitcoinExchange &obj){
         else{
             try
             {
+                
                 parsingStart(str, obj);
                 findValue(obj);
 
