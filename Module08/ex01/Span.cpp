@@ -53,12 +53,11 @@ void Span::addNumber(unsigned int value){
     for (unsigned int i = 0; i < counter ; i++){
         v.push_back(array[i]);
     }
-    int max = *std::max_element(v.begin(), v.end());
-    int min = *std::min_element(v.begin(), v.end());
+    std::sort(v.begin(), v.end());
+    int max = v[v.size() -1];
+    int min = v[0];
     return (max - min);
-
 }
-
 
 int Span::shortestSpan() const {
   
@@ -82,6 +81,7 @@ int Span::shortestSpan() const {
     return first;
     
 }
+
 void Span::addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end){
     for(std::vector<int>::iterator it = begin; it != end; it++ ){
         addNumber(*it);
