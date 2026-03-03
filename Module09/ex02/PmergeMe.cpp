@@ -1,6 +1,7 @@
 
 
 #include "PmergeMe.hpp"
+#include <algorithm>
 //  pair and return winners be shore that winner can insert abel 
 //  recursion untill size equel tow check if value upaired put value number unpaired var 
 //  when recursion reach base case return back with reucrsion  
@@ -53,37 +54,48 @@ std::vector<int> JacobsthalSequenec(int n){
     }
     return v;
 }
+void printDeque(std::deque<int> &v){
 
+    size_t i = 0;
+    while(i < v.size()){
+        std::cout << v[i] << "  ";
+        i++;
+    }
+    std::cout << "\n------------------\n";
+}
 
-void mergeInsertion(PmergeMe &obj, single v){
+void mergeInsertion(PmergeMe &obj, single &v){
 
-    if (obj.V1.size() <= 2)
-        return;
+    if (v.size() <= 2)
+        return  ;
     std::deque<int> losers;
-    std::deque<int> winner;
+    std::vector<int> winner;
     int unpaired ;
-    int size = obj.V1.size() -1;
-    if (obj.V1.size() % 2 != 0){
-        unpaired = obj.V1[size];
+    int size = v.size() -1;
+    if (v.size() % 2 != 0){
+        unpaired = v[size];
         size--;
     }
 
     int i = 0;
     while (i < size)
     {
-        if (obj.V1[i] > obj.V1[i + 1] ){
-            winner.push_back(obj.V1[ i + 1]);
-            losers.push_back(obj.V1[i]);
+        if (v[i] > v[i + 1] ){
+            winner.push_back(v[ i + 1]);
+            losers.push_back(v[i]);
         }
         else{
-           losers.push_back(obj.V1[ i + 1]);
-            winner.push_back(obj.V1[i]);
+           losers.push_back(v[ i + 1]);
+            winner.push_back(v[i]);
         }
         i+=2;
     }
-    mergeInsertion(obj, obj.V1);
-    printf("unpaired Value %d \n", unpaired);
-    printf("winner\n");
+    mergeInsertion(obj, winner);
+    // find element and and pos and sort that  
+
+
+    v = winner;
+
 }
 
 void parsing(int ac, char *av[], PmergeMe &obj){
@@ -100,9 +112,10 @@ void parsing(int ac, char *av[], PmergeMe &obj){
             else    
                 obj.V1.push_back(local);
         }
-        //printDebug(obj.V1);
         mergeInsertion(obj, obj.V1);
-        //CreateDoubleVector(obj);
+        printDebug(obj.V1);
+    
+  
     
     }
 }
