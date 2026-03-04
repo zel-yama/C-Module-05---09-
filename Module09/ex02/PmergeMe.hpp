@@ -6,7 +6,7 @@
 #include <exception> 
 #include <sstream>
 #include <deque>
-typedef std::vector<int> single;
+
 
 
 class PmergeMe{
@@ -14,9 +14,14 @@ class PmergeMe{
     public:
         int upairedValue;
        
-        single V1; 
-        std::deque<int> DEQ;
+        std::vector<int> V1; 
+        std::deque<int> deqe;
 };
 void parsing(int ac, char *av[], PmergeMe &obj);
-
-#endif
+std::vector<int> JacobsthalSequenec(int n);
+void insertElement(std::vector<int> &v, int element);
+void printVector(std::vector<int> v);
+void printDeque(std::deque<int> &v);
+void mergeInsertionVector(PmergeMe &obj, std::vector<int> &v);
+void mergeInsertionDeque(PmergeMe &obj, std::deque<int> &v);
+#endif  

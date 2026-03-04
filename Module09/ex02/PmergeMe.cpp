@@ -10,30 +10,6 @@
 //
 //
 
-int convertString(std::string str){
-    
-
-    std::stringstream ss(str);
-    std::string s;
-    int value;
-    ss >> value;
-    ss >> s;
-
-    if (!ss.eof()|| !s.empty() )
-        throw std::runtime_error("< Error Incorrect Arguments..!  < " + str + " > > ");
-    else 
-        return value;
-}
-void printDebug(single v){
-    single::iterator it  = v.begin();
-    while(it != v.end()){
-        printf("-> %d\n",*it);
-        it++;
-    }
-    printf("\n-----------------\n");
-}
-
-
 std::vector<int> JacobsthalSequenec(int n){
     
     std::vector<int> v;
@@ -54,48 +30,20 @@ std::vector<int> JacobsthalSequenec(int n){
     }
     return v;
 }
-void printDeque(std::deque<int> &v){
 
-    size_t i = 0;
-    while(i < v.size()){
-        std::cout << v[i] << "  ";
-        i++;
-    }
-    std::cout << "\n------------------\n";
-}
+int convertString(std::string str){
+    
 
-void mergeInsertion(PmergeMe &obj, single &v){
+    std::stringstream ss(str);
+    std::string s;
+    int value;
+    ss >> value;
+    ss >> s;
 
-    if (v.size() <= 2)
-        return  ;
-    std::deque<int> losers;
-    std::vector<int> winner;
-    int unpaired ;
-    int size = v.size() -1;
-    if (v.size() % 2 != 0){
-        unpaired = v[size];
-        size--;
-    }
-
-    int i = 0;
-    while (i < size)
-    {
-        if (v[i] > v[i + 1] ){
-            winner.push_back(v[ i + 1]);
-            losers.push_back(v[i]);
-        }
-        else{
-           losers.push_back(v[ i + 1]);
-            winner.push_back(v[i]);
-        }
-        i+=2;
-    }
-    mergeInsertion(obj, winner);
-    // find element and and pos and sort that  
-
-
-    v = winner;
-
+    if (!ss.eof()|| !s.empty() )
+        throw std::runtime_error("< Error Incorrect Arguments..!  < " + str + " > > ");
+    else 
+        return value;
 }
 
 void parsing(int ac, char *av[], PmergeMe &obj){
@@ -109,13 +57,18 @@ void parsing(int ac, char *av[], PmergeMe &obj){
           local =  convertString(av[i]);
           if (local < 0)
             throw std::runtime_error("< Error incorrect arguments negative...! >");
-            else    
+            else   {
+                obj.deqe.push_back(local);
                 obj.V1.push_back(local);
+            } 
         }
-        mergeInsertion(obj, obj.V1);
-        printDebug(obj.V1);
-    
-  
-    
+        std::cout << "before: " ; 
+        mergeInsertionVector(obj, obj.V1);
+        mergeInsertionDeque(obj, obj.deqe);
+        printf("--- final sored ---\n");
+        printVector(obj.V1);
+        printf("--- deque --- \n");
+        printDeque(obj.deqe);
+        
     }
 }
