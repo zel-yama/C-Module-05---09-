@@ -6,13 +6,15 @@
 #include <exception> 
 #include <sstream>
 #include <deque>
-
-
+#include <sys/time.h>
+#include <iomanip>
 
 class PmergeMe{
 
     public:
-        int upairedValue;
+        double dequeTime;
+        double vectorTime; 
+        size_t size;
        
         std::vector<int> V1; 
         std::deque<int> deqe;

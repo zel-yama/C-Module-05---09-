@@ -10,6 +10,13 @@
 //
 //
 
+size_t getTimeOfDay(){
+
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return ((tv.tv_sec * 1e6) + tv.tv_usec);
+    
+}
 std::vector<int> JacobsthalSequenec(int n){
     
     std::vector<int> v;
@@ -47,8 +54,7 @@ int convertString(std::string str){
 }
 
 void parsing(int ac, char *av[], PmergeMe &obj){
-    
-    obj.upairedValue = -1;
+    std::cout << std::fixed << std::setprecision(4) ;
     int local;
     if (ac < 2)
         throw std::runtime_error("< Error incorrect arguments...! >");
@@ -62,13 +68,21 @@ void parsing(int ac, char *av[], PmergeMe &obj){
                 obj.V1.push_back(local);
             } 
         }
-        std::cout << "before: " ; 
-        mergeInsertionVector(obj, obj.V1);
-        mergeInsertionDeque(obj, obj.deqe);
-        printf("--- final sored ---\n");
-        printVector(obj.V1);
-        printf("--- deque --- \n");
+        obj.size = obj.V1.size();
+        std::cout << "Before: " ; 
         printDeque(obj.deqe);
-        
+        double start = getTimeOfDay();
+        mergeInsertionVector(obj, obj.V1);
+        double end = getTimeOfDay();
+        obj.vectorTime = end - start;
+        start = getTimeOfDay();
+        mergeInsertionDeque(obj, obj.deqe);
+        end = getTimeOfDay();
+        obj.dequeTime = end - start;
+        std::cout << "After:  ";
+        printDeque(obj.deqe);
+        printf("%f\n", obj.dequeTime);
+        std::cout << "time to process a range of " << obj.size << " elements with std::vector " << obj.vectorTime <<  " us " <<  std::endl;
+        std::cout << "time to process a range of " << obj.size << " elements with std::deque " << obj.dequeTime << " us" <<  std::endl;
     }
 }
