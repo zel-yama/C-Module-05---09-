@@ -11,6 +11,10 @@ class RPN{
         std::stack<int> mystack;
     public:
         void operations(std::string av);
+        RPN();
+        ~RPN();
+        RPN &operator=(const RPN &obj);
+        RPN(const RPN &obj);
 
 };
 

@@ -18,6 +18,10 @@ class PmergeMe{
        
         std::vector<int> V1; 
         std::deque<int> deqe;
+        PmergeMe();
+        PmergeMe(const PmergeMe &obj);
+        ~PmergeMe();
+        PmergeMe &operator=(const PmergeMe &obj);
 };
 void parsing(int ac, char *av[], PmergeMe &obj);
 std::vector<int> JacobsthalSequenec(int n);

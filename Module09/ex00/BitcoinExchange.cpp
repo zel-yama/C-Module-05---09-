@@ -29,6 +29,20 @@ std::string removeSpaces(std::string &str){
 	return str.substr(start, (end - start));
 }
 
+BitcoinExchange::~BitcoinExchange(){
+
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &obj ){
+    (void )obj;
+
+    return *this;
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &obj){
+    (void)obj;
+}
+
 BitcoinExchange::BitcoinExchange(){
 
     flag = false;
@@ -48,17 +62,7 @@ BitcoinExchange::BitcoinExchange(){
             pos++;
             str = str.substr(pos);
             value = convertString(str);
-            store[key] = value;
-         
-                  
-
-            
-        }
-    
-        
+            store[key] = value;            
+        }   
     }
-
-
-    
-    
 }

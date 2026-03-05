@@ -9,12 +9,29 @@
 //
 //
 //
+PmergeMe::PmergeMe(){
 
-size_t getTimeOfDay(){
+}
+
+PmergeMe::PmergeMe(const PmergeMe &obj){
+    (void)obj;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &obj ){
+
+    (void)obj;
+    return *this;
+}
+
+PmergeMe::~PmergeMe(){
+
+}
+
+double getTimeOfDay(){
 
     struct timeval tv;
     gettimeofday(&tv, NULL);
-    return ((tv.tv_sec * 1e6) + tv.tv_usec);
+    return ( (tv.tv_sec * 1000000.0) +  (double)tv.tv_usec);
     
 }
 std::vector<int> JacobsthalSequenec(int n){
@@ -54,7 +71,7 @@ int convertString(std::string str){
 }
 
 void parsing(int ac, char *av[], PmergeMe &obj){
-    std::cout << std::fixed << std::setprecision(4) ;
+    std::cout <<  std::fixed << std::setprecision(7) ;
     int local;
     if (ac < 2)
         throw std::runtime_error("< Error incorrect arguments...! >");
@@ -78,11 +95,10 @@ void parsing(int ac, char *av[], PmergeMe &obj){
         start = getTimeOfDay();
         mergeInsertionDeque(obj, obj.deqe);
         end = getTimeOfDay();
-        obj.dequeTime = end - start;
+        obj.dequeTime =(double) end - start;
         std::cout << "After:  ";
-        printDeque(obj.deqe);
-        printf("%f\n", obj.dequeTime);
-        std::cout << "time to process a range of " << obj.size << " elements with std::vector " << obj.vectorTime <<  " us " <<  std::endl;
-        std::cout << "time to process a range of " << obj.size << " elements with std::deque " << obj.dequeTime << " us" <<  std::endl;
+        printDeque(obj.deqe);      
+        std::cout << "time to process a range of " << obj.size << " elements with std::vector " << obj.vectorTime / 1000000.0 <<  " us " <<  std::endl;
+        std::cout << "time to process a range of " << obj.size << " elements with std::deque " << obj.dequeTime /1000000.0<< " us" <<  std::endl;
     }
 }

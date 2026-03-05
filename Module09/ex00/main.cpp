@@ -3,8 +3,10 @@ int main(int av, char *ac[])
 {
     (void) ac;
     
-    if (av != 2)
-    return (1);
+    if (av != 2){
+        std::cout << "[invalid  arguments ]" << std::endl;
+        return (1);
+    }
     try{
         BitcoinExchange obj;
 

@@ -14,6 +14,9 @@ class BitcoinExchange{
         double value;
         bool flag;
         BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange &obj);
+        ~BitcoinExchange();
+        BitcoinExchange &operator=(const BitcoinExchange &obj);
         maptype store;
     private:
     

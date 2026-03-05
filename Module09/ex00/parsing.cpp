@@ -18,6 +18,7 @@ void parsdateingFirstLine(std::string &str){
     
     }
 }
+
 void convertValue(std::string &date){
     char dash, dash1;
     int day,year, month;
@@ -60,8 +61,25 @@ void parsingValue(std::string &value){
     }
 
 }
+void checkTokens(std::string &line){
+    size_t i = 0;
+
+    while (i < line.size())
+    {
+        if (std::isspace((unsigned int ) line[i]) != 0 || std::isdigit((unsigned int ) line[i]) != 0 )
+        {
+        } 
+        else if (line[i] != '-' && line[i] != '|' && line[i] != '.'){
+        
+            throw  std::runtime_error("Error tokens should be valid ");
+        }
+        i++;
+    }
+    
+}
 void parsingStart(std::string &line, BitcoinExchange &obj){
     
+    checkTokens(line);
     size_t pos = line.find("|");
     if (pos == std::string::npos)
         throw std::runtime_error("Error invalid line needed '|' => "+ line);
@@ -119,8 +137,11 @@ void parsing(char *file, BitcoinExchange &obj){
     
     while (getline(input, str))
     {
-        if (str.empty())
-            throw std::runtime_error("Error in file is empty");
+        if (str.empty()){
+            std::cout << "Error empty line -" <<std::endl;
+            continue;
+
+        }
         
         if (!obj.flag)
             parsdateingFirstLine(str);
@@ -130,18 +151,18 @@ void parsing(char *file, BitcoinExchange &obj){
                 
                 parsingStart(str, obj);
                 findValue(obj);
-
+                
             }
             catch(const std::exception& e)
             {
                 std::cerr << e.what() << '\n';
             }
             
-
-
+            
+            
         }
         obj.flag = true;
-}
+    }
     
 
 }
