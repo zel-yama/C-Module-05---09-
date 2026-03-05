@@ -4,14 +4,13 @@
 
 double convertString(std::string &str){
     
-
     std::stringstream ss(str);
     std::string s;
     double value;
     ss >> value;
     ss >> s;
 
-    if (!s.empty() && !ss.eof())
+    if (!s.empty() || !ss.eof())
         return -1;
     else 
         return value;
@@ -62,6 +61,7 @@ BitcoinExchange::BitcoinExchange(){
             pos++;
             str = str.substr(pos);
             value = convertString(str);
+        
             store[key] = value;            
         }   
     }

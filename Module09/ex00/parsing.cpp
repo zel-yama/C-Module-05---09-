@@ -50,17 +50,7 @@ void charValidtionDate(std::string&  date){
         throw std::runtime_error("Error: invalid date => "+ date);
     convertValue(date);
 }
-void parsingValue(std::string &value){
-    size_t i = 0;
-    size_t size = value.size();
-    while(i < size){
- 
-        if (std::isalpha((unsigned int) value[i]) && value[i] != '.' )
-            throw std::runtime_error("Error value is not valid => " + value);
-        i++;
-    }
 
-}
 void checkTokens(std::string &line){
     size_t i = 0;
 
@@ -71,7 +61,7 @@ void checkTokens(std::string &line){
         } 
         else if (line[i] != '-' && line[i] != '|' && line[i] != '.'){
         
-            throw  std::runtime_error("Error tokens should be valid ");
+            throw  std::runtime_error("Error tokens should be valid => " + line);
         }
         i++;
     }
@@ -83,21 +73,19 @@ void parsingStart(std::string &line, BitcoinExchange &obj){
     size_t pos = line.find("|");
     if (pos == std::string::npos)
         throw std::runtime_error("Error invalid line needed '|' => "+ line);
-    std::string value = line.substr(pos +1);
+    std::string value = line.substr(pos + 1);
     line = line.substr(0, pos);
     line = removeSpaces(line);
     value = removeSpaces(value);
     obj.date = line;
     obj.value = convertString(value);
     if (obj.value < 0 )
-        throw std::runtime_error("Error: not a positive number.");
+        throw std::runtime_error("Error: is not  valid number. => "+ line);
     if (obj.value > 1000)
-        throw std::runtime_error("Error: too large a number. ");
-    parsingValue(value);
+        throw std::runtime_error("Error: too large a number.=> "+ line);
     charValidtionDate(line);
     if (obj.store.begin()->first > line)
         throw std::runtime_error("Error : lower date for my data range => " + line);
-
 }
 void print(std::string &date, double price, double result){
     std::cout << date << " => " << price << " = " << result << std::endl;
@@ -111,12 +99,10 @@ void findValue(BitcoinExchange &obj){
         print(obj.date, obj.value, obj.value * obj.store[obj.date] );
     }
     else{
-
-
         maptype::iterator its = obj.store.end();
         its--;
         if (obj.date > its->first)
-            print(obj.date, obj.value, obj.value * obj.store.end()->second);
+            print(obj.date, obj.value, obj.value * its->second);
         else{
             maptype::iterator it = obj.store.lower_bound(obj.date);
             it--;
@@ -138,11 +124,9 @@ void parsing(char *file, BitcoinExchange &obj){
     while (getline(input, str))
     {
         if (str.empty()){
-            std::cout << "Error empty line -" <<std::endl;
+            std::cout << " Error empty line -" <<std::endl;
             continue;
-
         }
-        
         if (!obj.flag)
             parsdateingFirstLine(str);
         else{
