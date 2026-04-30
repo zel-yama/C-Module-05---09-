@@ -44,8 +44,8 @@ int switchCases(int num, int num1, char c){
 }
 void caloperation(std::stack<int> &stak, char c){
     int num1, num;
-    if (stak.empty() || stak.size() != 2  ){
-        if (stak.size() != 2)
+    if (stak.empty() || stak.size() == 1   ){
+        if (stak.size() == 1)
             throw std::runtime_error("Error: every operation should have tow number");
         return ;
     }
@@ -61,9 +61,22 @@ void RPN::operations(std::string av){
 
     
     size_t size = av.size();
+    if (av.empty()){
+        std::cout << "Error: empty string " << std::endl;
+        return;
+    }
+
     for(size_t i = 0; i < size ; i++){
+        if (std::isdigit(av[i]) && !std::isspace(av[i])){
+            std::cout << ""
+        }
+
         if (std::isdigit((unsigned int )av[i])){
-            
+            if ((i + 1 < size) && std::isdigit(av[i + 1])) {
+                std::cout << "Error : in number should be < 10   " << std::endl;
+                return ;
+            }
+
             mystack.push((int)av[i] - '0');
           
         }
