@@ -67,9 +67,7 @@ void RPN::operations(std::string av){
     }
 
     for(size_t i = 0; i < size ; i++){
-        if (std::isdigit(av[i]) && !std::isspace(av[i])){
-            std::cout << ""
-        }
+        
 
         if (std::isdigit((unsigned int )av[i])){
             if ((i + 1 < size) && std::isdigit(av[i + 1])) {

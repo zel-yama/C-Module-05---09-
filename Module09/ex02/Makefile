@@ -2,7 +2,7 @@
 NAME = PmergeMe
 COM = c++ 
 FILES = PmergeMe.cpp main.cpp dequeSorted.cpp vectorSorted.cpp
-FLAGES = -Werror -Wextra -Wall #-std=c++98
+FLAGES = -Werror -Wextra -Wall -std=c++98
 RM = rm -rf 
 OBJ = $(FILES:.cpp=.o)
 

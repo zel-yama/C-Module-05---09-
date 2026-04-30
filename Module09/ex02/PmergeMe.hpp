@@ -26,7 +26,7 @@ class PmergeMe{
 void parsing(int ac, char *av[], PmergeMe &obj);
 std::vector<int> JacobsthalSequenec(int n);
 void insertElement(std::vector<int> &v, int element);
-void printVector(std::vector<int> v);
+
 void printDeque(std::deque<int> &v);
 void mergeInsertionVector(PmergeMe &obj, std::vector<int> &v);
 void mergeInsertionDeque(PmergeMe &obj, std::deque<int> &v);

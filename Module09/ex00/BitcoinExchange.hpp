@@ -7,7 +7,8 @@
 #include <exception>
 #include <sstream>
 #include <cctype>
-typedef std::map<std::string , float> maptype;
+#include <iomanip>
+typedef std::map<std::string , double> maptype;
 class BitcoinExchange{
     public:
         std::string date;

@@ -1,14 +1,6 @@
 
 #include "PmergeMe.hpp"
 
-void printVector(std::vector<int> v){
-    std::vector<int>::iterator it  = v.begin();
-    while(it != v.end()){
-        std::cout << *it << " ";
-        it++;
-    }
-    std::cout << std::endl;
-}
 
 
 
@@ -87,7 +79,7 @@ void mergeInsertionVector(PmergeMe &obj, std::vector<int> &v){
         i+=2;
     }
     mergeInsertionVector(obj, winner);
-    // find element and and pos and sort that  sort winner and write him back into 
+ 
     inserLoserIntoWinner(winner, losers);
     if (flag == 1){
             insertElement(winner, unpaired);

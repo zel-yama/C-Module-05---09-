@@ -19,7 +19,7 @@ void parsdateingFirstLine(std::string &str){
     }
 }
 
-void convertValue(std::string &date){
+void checkDate(std::string &date){
     char dash, dash1;
     int day,year, month;
     int daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31}; 
@@ -48,7 +48,7 @@ void charValidtionDate(std::string&  date){
     }
     if (date[0] == '-' || date[size -1] == '-')
         throw std::runtime_error("Error: invalid date => "+ date);
-    convertValue(date);
+    checkDate(date);
 }
 
 void checkTokens(std::string &line){
@@ -88,6 +88,8 @@ void parsingStart(std::string &line, BitcoinExchange &obj){
         throw std::runtime_error("Error : lower date for my data range => " + line);
 }
 void print(std::string &date, double price, double result){
+    std::cout << std::fixed << std::setprecision(2);
+    
     std::cout << date << " => " << price << " = " << result << std::endl;
 }
 
@@ -96,17 +98,18 @@ void findValue(BitcoinExchange &obj){
 
     if(obj.store.find(obj.date) != obj.store.end())
     {
-        print(obj.date, obj.value, obj.value * obj.store[obj.date] );
+        print(obj.date, obj.value,(double) obj.value * obj.store[obj.date] );
     }
     else{
         maptype::iterator its = obj.store.end();
         its--;
         if (obj.date > its->first)
-            print(obj.date, obj.value, obj.value * its->second);
+            print(obj.date, obj.value, (double) obj.value * its->second);
         else{
             maptype::iterator it = obj.store.lower_bound(obj.date);
             it--;
-            print(obj.date, obj.value, obj.value * it->second);
+            
+            print(obj.date, obj.value, (double) obj.value * it->second);
         }
     }
 
@@ -147,6 +150,7 @@ void parsing(char *file, BitcoinExchange &obj){
         }
         obj.flag = true;
     }
-    
+    if (obj.flag == false)
+        std::cout << "Error: empty file" <<std::endl;
 
 }

@@ -2,13 +2,7 @@
 
 #include "PmergeMe.hpp"
 #include <algorithm>
-//  pair and return winners be shore that winner can insert abel 
-//  recursion untill size equel tow check if value upaired put value number unpaired var 
-//  when recursion reach base case return back with reucrsion  
-//
-//
-//
-//
+
 PmergeMe::PmergeMe(){
 
 }

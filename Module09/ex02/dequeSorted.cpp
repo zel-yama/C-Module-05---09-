@@ -84,7 +84,7 @@ void mergeInsertionDeque(PmergeMe &obj, std::deque<int> &v){
         i+=2;
     }
     mergeInsertionDeque(obj, winner);
-    // find element and and pos and sort that  sort winner and write him back into 
+
     inserLoserIntoWinner(winner, losers);
     if (flag == 1){
             insertElement(winner, unpaired);
