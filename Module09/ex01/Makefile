@@ -1,6 +1,6 @@
 
 NAME = RPN 
-FLAGS = -Werror -Wextra -Wall #-std=c++98
+FLAGS = -Werror -Wextra -Wall -std=c++98
 COM = c++
 RM = rm -rf 
 FILES = main.cpp RPN.cpp
