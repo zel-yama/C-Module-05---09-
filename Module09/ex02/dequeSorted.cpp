@@ -29,6 +29,7 @@ void insertNelement(std::deque<int> &winner, std::deque<int>losers, int &insered
     }
     insered += tmp;
 }
+
 void inserLoserIntoWinner(std::deque<int> &winner, std::deque<int> &losers){
      const std::vector<int> &Jacob = JacobsthalSequenec(losers.size());
     
@@ -45,7 +46,6 @@ void inserLoserIntoWinner(std::deque<int> &winner, std::deque<int> &losers){
         }
         indexJacob++;
     }
-
 }
 
 void mergeInsertionDeque(PmergeMe &obj, std::deque<int> &v){

@@ -5,8 +5,8 @@
 #include <stack>
 #include <exception>
 #include <cctype>
-class RPN{
 
+class RPN{
     private:
         std::stack<int> mystack;
     public:
@@ -15,7 +15,6 @@ class RPN{
         ~RPN();
         RPN &operator=(const RPN &obj);
         RPN(const RPN &obj);
-
 };
 
 

@@ -89,7 +89,6 @@ void RPN::operations(std::string av){
         std::cout << "Error: empty stack " << std::endl;
         return ;
     }
-
     if (mystack.size() > 1 ){
         std::cout << "Error: invalid insertion of operation " << std::endl;
         return;
