@@ -25,6 +25,8 @@ void checkDate(std::string &date){
     int daysInMonth[] = {31,28,31,30,31,30,31,31,30,31,30,31}; 
     std::stringstream ss(date);
     ss >> year >> dash >> month >> dash1 >> day;
+    if (dash != '-' || dash1 != '-')
+        throw std::runtime_error("Error : invalid needed tow dash => " + date);
     if (year % 400 == 0 || year % 4 == 0)
         daysInMonth[1] = 29;
     if ((day <= 0 || month <= 0) ||  year <= 0 )
@@ -41,11 +43,6 @@ void charValidtionDate(std::string&  date){
     size_t size = date.size();
     if (size != 10)
         throw std::runtime_error("Error: format of date is not correct => " + date);
-    while(i > size){
-        if (!std::isalpha((unsigned int) date[i]) && date[i] != '-' )
-            throw std::runtime_error("Error : invalid char in this date => " + date);
-        i++;
-    }
     if (date[0] == '-' || date[size -1] == '-')
         throw std::runtime_error("Error: invalid date => "+ date);
     checkDate(date);
@@ -88,7 +85,7 @@ void parsingStart(std::string &line, BitcoinExchange &obj){
         throw std::runtime_error("Error : lower date for my data range => " + line);
 }
 void print(std::string &date, double price, double result){
-    std::cout << std::fixed << std::setprecision(2);
+    
     
     std::cout << date << " => " << price << " = " << result << std::endl;
 }
@@ -108,11 +105,9 @@ void findValue(BitcoinExchange &obj){
         else{
             maptype::iterator it = obj.store.lower_bound(obj.date);
             it--;
-            
             print(obj.date, obj.value, (double) obj.value * it->second);
         }
     }
-
 }
 
 void parsing(char *file, BitcoinExchange &obj){
@@ -134,8 +129,7 @@ void parsing(char *file, BitcoinExchange &obj){
             parsdateingFirstLine(str);
         else{
             try
-            {
-                
+            {  
                 parsingStart(str, obj);
                 findValue(obj);
                 
@@ -143,10 +137,7 @@ void parsing(char *file, BitcoinExchange &obj){
             catch(const std::exception& e)
             {
                 std::cerr << e.what() << '\n';
-            }
-            
-            
-            
+            } 
         }
         obj.flag = true;
     }
