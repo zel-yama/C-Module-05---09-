@@ -14,8 +14,6 @@ void parsdateingFirstLine(std::string &str){
      
         if (str.compare("value") != 0 || value.compare("date") != 0 )
             throw std::runtime_error("invalid value of the first line in  file in input");
-   
-    
     }
 }
 
@@ -39,7 +37,6 @@ void checkDate(std::string &date){
 
 void charValidtionDate(std::string&  date){
 
-    size_t i = 0;
     size_t size = date.size();
     if (size != 10)
         throw std::runtime_error("Error: format of date is not correct => " + date);
@@ -85,8 +82,6 @@ void parsingStart(std::string &line, BitcoinExchange &obj){
         throw std::runtime_error("Error : lower date for my data range => " + line);
 }
 void print(std::string &date, double price, double result){
-    
-    
     std::cout << date << " => " << price << " = " << result << std::endl;
 }
 
@@ -123,6 +118,8 @@ void parsing(char *file, BitcoinExchange &obj){
     {
         if (str.empty()){
             std::cout << " Error empty line -" <<std::endl;
+            if (!obj.flag)  
+                return ;
             continue;
         }
         if (!obj.flag)
@@ -136,7 +133,7 @@ void parsing(char *file, BitcoinExchange &obj){
             }
             catch(const std::exception& e)
             {
-                std::cerr << e.what() << '\n';
+                std::cout << e.what() << '\n';
             } 
         }
         obj.flag = true;

@@ -3,10 +3,6 @@
 
 
 
-
-
-
-
 void insertElement(std::vector<int> &v, int element){
 
     std::vector<int>::iterator it = std::lower_bound(v.begin(), v.end(), element);
