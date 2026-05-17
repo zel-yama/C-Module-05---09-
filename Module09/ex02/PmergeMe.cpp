@@ -54,11 +54,11 @@ int convertString(std::string str){
 
     std::stringstream ss(str);
     std::string s;
-    int value;
+    long long value;
     ss >> value;
     ss >> s;
 
-    if (!ss.eof()|| !s.empty() )
+    if (!ss.eof()|| !s.empty() || value > 2147483647 )
         throw std::runtime_error("< Error Incorrect Arguments..!  < " + str + " > > ");
     else 
         return value;
