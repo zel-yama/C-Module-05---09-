@@ -1,5 +1,6 @@
 
 #include "BitcoinExchange.hpp"
+
 void parsdateingFirstLine(std::string &str){
     std::string value;
     size_t pos = str.find("|");

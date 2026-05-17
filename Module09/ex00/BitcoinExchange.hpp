@@ -19,7 +19,7 @@ class BitcoinExchange{
         ~BitcoinExchange();
         BitcoinExchange &operator=(const BitcoinExchange &obj);
         maptype store;
-    private:
+    
     
         
 };
